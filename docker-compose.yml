@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  database:
+    container_name: postgres-db
+    image: "postgres:alpine"
+    tty: true
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "${POSTGRES_DB_PORT}:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+volumes:
+  pgdata:
