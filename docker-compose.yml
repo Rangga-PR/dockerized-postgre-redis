@@ -14,5 +14,16 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
+  redis:
+    container_name: redis
+    image: "redis:alpine"
+    tty: true
+    command: ["redis-server", "--requirepass", "${REDIS_PASSWORD}"]
+    volumes:
+      - redisdata:/data
+    ports:
+      - "${REDIS_PORT}:6379"
+
 volumes:
   pgdata:
+  redisdata:
