@@ -35,6 +35,19 @@ services:
     ports:
       - "${REDIS_PORT}:6379"
 
+  redis-commander:
+    container_name: redis-commander
+    image: "rediscommander/redis-commander:latest"
+    depends_on:
+      - redis
+    ports:
+      - "${REDISCOMMANDER_PORT}:8081"
+    environment:
+      REDIS_HOST: redis
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+      HTTP_USER: ${REDISCOMMANDER_USER}
+      HTTP_PASSWORD: ${REDISCOMMANDER_PASSWORD}
+
 volumes:
   pgdata:
   redisdata:
